@@ -5,10 +5,16 @@
   align-items: center;
   justify-content: space-evenly;
   border-bottom: 1px solid lightgray;
+  cursor: pointer;
 }
 
 .app__header-image {
   object-fit: contain;
+}
+
+.app__header-input {
+  border-radius: 0.5rem;
+  border-width: medium;
 }
 
 .app__header-icons {
@@ -17,4 +23,5 @@
 
 .app__header-icons div {
   margin: 0.3rem;
+  cursor: pointer;
 }

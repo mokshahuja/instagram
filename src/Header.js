@@ -8,6 +8,8 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 function Header() {
+
+
   return (
     <div className="app__header">
       <img

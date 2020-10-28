@@ -3,6 +3,7 @@
   background-color: white;
   border: 1px solid lightgray;
   margin-bottom: 2.5rem;
+  border-radius: 0.5rem;
 }
 
 .post__image {
@@ -10,6 +11,15 @@
   object-fit: contain;
   border-top: 1px solid lightgray;
   border-bottom: 1px solid lightgray;
+}
+
+.post__responses {
+  display: flex;
+}
+
+.post__responses button {
+  margin: 0rem;
+  cursor: pointer;
 }
 
 .post__text {

@@ -1,41 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
+
 import Header from "./Header";
 import Post from "./Post";
+import { db } from "./firebase.js";
 
 function App() {
-  const [posts, setPosts] = useState([
-    {
-      username: "Moksh Ahuja",
-      imageUrl:
-        "https://images.unsplash.com/photo-1593642702909-dec73df255d7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=60",
-      caption: "Hey its me",
-      avatarUrl:
-        "https://images.unsplash.com/photo-1603502553132-d98b284201f4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=60",
-    },
-    {
-      username: "Riya Ahuja",
-      imageUrl:
-        "https://images.unsplash.com/photo-1603503303419-3b90c947735b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=60",
-      caption: "Hey its meeeeee",
-    },
-    {
-      username: "Moksh Ahuja",
-      imageUrl:
-        "https://images.unsplash.com/photo-1593642702909-dec73df255d7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=60",
-      caption: "Hey its me",
-      avatarUrl:
-        "https://images.unsplash.com/photo-1603502553132-d98b284201f4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=60",
-    },
-    {
-      username: "Moksh Ahuja",
-      imageUrl:
-        "https://images.unsplash.com/photo-1593642702909-dec73df255d7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=60",
-      caption: "Hey its me",
-      avatarUrl:
-        "https://images.unsplash.com/photo-1603502553132-d98b284201f4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=60",
-    },
-  ]);
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    db.collection("posts").onSnapshot((snapshot) => {
+      setPosts(snapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() })));
+    });
+  }, []);
 
   return (
     <div className="App">
@@ -44,14 +21,16 @@ function App() {
       <Header />
 
       {/* posts */}
-      {posts.map((post) => (
-        <Post
-          username={post.username}
-          imageUrl={post.imageUrl}
-          caption={post.caption}
-          avatarUrl={post.avatarUrl}
-        />
-      ))}
+      <div className="posts">
+        {posts.map(({ post, id }) => (
+          <Post
+            key={id}
+            username={post.username}
+            imageUrl={post.imageUrl}
+            caption={post.caption}
+          />
+        ))}
+      </div>
     </div>
   );
 }
