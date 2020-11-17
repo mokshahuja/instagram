@@ -32,7 +32,7 @@ function Header() {
           <FavoriteBorderIcon />
         </div>
         <div className="app__header-profile">
-          <AccountCircleIcon />
+          <AccountCircleIcon/>
         </div>
       </div>
     </div>

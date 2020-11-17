@@ -9,6 +9,16 @@
 .posts {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
+  justify-content: center;
   align-items: center;
+}
+
+.signUp-button {
+  color: black;
+  background-color: gray;
+}
+
+.app__signup {
+  display: flex;
+  flex-direction: column;
 }
